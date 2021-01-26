@@ -5,7 +5,6 @@ import com.dev.movietheatre.lib.Inject;
 import com.dev.movietheatre.lib.Service;
 import com.dev.movietheatre.model.Movie;
 import com.dev.movietheatre.service.MovieService;
-
 import java.util.List;
 
 @Service

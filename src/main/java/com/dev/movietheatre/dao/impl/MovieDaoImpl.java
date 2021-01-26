@@ -4,11 +4,10 @@ import com.dev.movietheatre.dao.MovieDao;
 import com.dev.movietheatre.lib.Dao;
 import com.dev.movietheatre.model.Movie;
 import com.dev.movietheatre.util.HibernateUtil;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
-import java.util.List;
 
 @Dao
 public class MovieDaoImpl implements MovieDao {

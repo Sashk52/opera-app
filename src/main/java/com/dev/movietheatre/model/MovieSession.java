@@ -15,10 +15,10 @@ public class MovieSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne (fetch = FetchType.LAZY)
-    @JoinColumn(name = "Movie_id")
+    @JoinColumn(name = "movie_id")
     private Movie movie;
     @ManyToOne (fetch = FetchType.LAZY)
-    @JoinColumn(name = "CinemaHall_id")
+    @JoinColumn(name = "cinemaHall_id")
     private CinemaHall cinemaHall;
     private LocalDateTime showTime;
 

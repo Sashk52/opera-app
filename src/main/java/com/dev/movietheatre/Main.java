@@ -35,7 +35,7 @@ public class Main {
         LocalDateTime localDateTime = LocalDateTime.of(2021, 02, 01, 15, 00);
         movieSession.setShowTime(localDateTime);
         movieSessionService.add(movieSession);
-        LocalDate movieDate = LocalDate.of(2021,02,01);
+        LocalDate movieDate = LocalDate.of(2021, 02, 01);
         List<MovieSession> availableSessions = movieSessionService
                 .findAvailableSessions(movie.getId(),
                 movieDate);

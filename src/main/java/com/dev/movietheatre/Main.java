@@ -14,7 +14,6 @@ import java.util.List;
 public class Main {
     private static Injector injector = Injector.getInstance("com.dev.movietheatre");
 
-
     public static void main(String[] args) {
         MovieService movieService = (MovieService) injector.getInstance(MovieService.class);
         Movie movie = new Movie();
@@ -37,7 +36,8 @@ public class Main {
         movieSession.setShowTime(localDateTime);
         movieSessionService.add(movieSession);
         LocalDate movieDate = LocalDate.of(2021,02,01);
-        List<MovieSession> availableSessions = movieSessionService.findAvailableSessions(movie.getId(),
+        List<MovieSession> availableSessions = movieSessionService
+                .findAvailableSessions(movie.getId(),
                 movieDate);
         System.out.println(availableSessions.toString());
     }

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Main {
     private static Injector injector = Injector.getInstance("com.dev.movietheatre");
-    private static final LocalDate LOCAL_DATE = LocalDate.of(2021,02,01);
+
 
     public static void main(String[] args) {
         MovieService movieService = (MovieService) injector.getInstance(MovieService.class);
@@ -33,11 +33,12 @@ public class Main {
                 .getInstance(MovieSessionService.class);
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movie);
-        LocalDateTime localDateTime = LocalDateTime.of(2021,02,01,15,00);
+        LocalDateTime localDateTime = LocalDateTime.of(2021, 02, 01, 15, 00);
         movieSession.setShowTime(localDateTime);
         movieSessionService.add(movieSession);
-        List<MovieSession> availableSessions = movieSessionService.findAvailableSessions(1L,
-                LOCAL_DATE);
+        LocalDate movieDate = LocalDate.of(2021,02,01);
+        List<MovieSession> availableSessions = movieSessionService.findAvailableSessions(movie.getId(),
+                movieDate);
         System.out.println(availableSessions.toString());
     }
 }

@@ -16,5 +16,7 @@
         <mapping class="com.dev.movietheatre.model.MovieSession"/>
         <mapping class="com.dev.movietheatre.model.CinemaHall"/>
         <mapping class="com.dev.movietheatre.model.User"/>
+        <mapping class="com.dev.movietheatre.model.ShoppingCart"/>
+        <mapping class="com.dev.movietheatre.model.Ticket"/>
     </session-factory>
 </hibernate-configuration>

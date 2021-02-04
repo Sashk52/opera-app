@@ -5,11 +5,13 @@ import com.dev.movietheatre.lib.Injector;
 import com.dev.movietheatre.model.CinemaHall;
 import com.dev.movietheatre.model.Movie;
 import com.dev.movietheatre.model.MovieSession;
+import com.dev.movietheatre.model.ShoppingCart;
 import com.dev.movietheatre.model.User;
 import com.dev.movietheatre.security.AuthenticationService;
 import com.dev.movietheatre.service.CinemaHallService;
 import com.dev.movietheatre.service.MovieService;
 import com.dev.movietheatre.service.MovieSessionService;
+import com.dev.movietheatre.service.ShoppingCartService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -50,5 +52,18 @@ public class Main {
         User loginedUser = authenticationService.login("Billy@ukr.net", "111");
         System.out.println("Registered user " + registeredUser.toString());
         System.out.println("Logined user " + loginedUser.toString());
+
+        ShoppingCartService shoppingCartService = (ShoppingCartService) injector
+                .getInstance(ShoppingCartService.class);
+        User newRegisteredUser = authenticationService.register("Sam@ukr.net", "000");
+        shoppingCartService.addSession(movieSession,newRegisteredUser);
+        ShoppingCart shoppingCartByNewRegisteredUser = shoppingCartService
+                .getByUser(newRegisteredUser);
+        System.out.println("____There is Sam's shopping cart_____ "
+                + shoppingCartByNewRegisteredUser);
+        shoppingCartService.clear(shoppingCartService.getByUser(newRegisteredUser));
+        ShoppingCart userWithClearedShoppingCart = shoppingCartService.getByUser(newRegisteredUser);
+        System.out.println("____There is Sam's shopping cart after clear_____ "
+                + userWithClearedShoppingCart);
     }
 }

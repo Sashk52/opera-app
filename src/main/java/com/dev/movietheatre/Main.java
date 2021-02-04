@@ -58,10 +58,10 @@ public class Main {
         User registeredUser1 = authenticationService.register("Sam@ukr.net", "000");
         shoppingCartService.addSession(movieSession,registeredUser1);
         ShoppingCart shoopingCartbyUser1 = shoppingCartService.getByUser(registeredUser1);
-        System.out.println("____There is Sam's shopping card_____ " + shoopingCartbyUser1);
+        System.out.println("____There is Sam's shopping cart_____ " + shoopingCartbyUser1);
         shoppingCartService.clear(shoppingCartService.getByUser(registeredUser1));
-        ShoppingCart userWithClearedShoppingCard = shoppingCartService.getByUser(registeredUser1);
-        System.out.println("____There is Sam's shopping card after clear_____ "
-                + userWithClearedShoppingCard);
+        ShoppingCart userWithClearedShoppingCart = shoppingCartService.getByUser(registeredUser1);
+        System.out.println("____There is Sam's shopping cart after clear_____ "
+                + userWithClearedShoppingCart);
     }
 }

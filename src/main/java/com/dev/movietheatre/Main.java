@@ -55,12 +55,14 @@ public class Main {
 
         ShoppingCartService shoppingCartService = (ShoppingCartService) injector
                 .getInstance(ShoppingCartService.class);
-        User registeredUser1 = authenticationService.register("Sam@ukr.net", "000");
-        shoppingCartService.addSession(movieSession,registeredUser1);
-        ShoppingCart shoopingCartbyUser1 = shoppingCartService.getByUser(registeredUser1);
-        System.out.println("____There is Sam's shopping cart_____ " + shoopingCartbyUser1);
-        shoppingCartService.clear(shoppingCartService.getByUser(registeredUser1));
-        ShoppingCart userWithClearedShoppingCart = shoppingCartService.getByUser(registeredUser1);
+        User newRegisteredUser = authenticationService.register("Sam@ukr.net", "000");
+        shoppingCartService.addSession(movieSession,newRegisteredUser);
+        ShoppingCart shoopingCartByNewRegisteredUser = shoppingCartService
+                .getByUser(newRegisteredUser);
+        System.out.println("____There is Sam's shopping cart_____ "
+                + shoopingCartByNewRegisteredUser);
+        shoppingCartService.clear(shoppingCartService.getByUser(newRegisteredUser));
+        ShoppingCart userWithClearedShoppingCart = shoppingCartService.getByUser(newRegisteredUser);
         System.out.println("____There is Sam's shopping cart after clear_____ "
                 + userWithClearedShoppingCart);
     }

@@ -57,10 +57,10 @@ public class Main {
                 .getInstance(ShoppingCartService.class);
         User newRegisteredUser = authenticationService.register("Sam@ukr.net", "000");
         shoppingCartService.addSession(movieSession,newRegisteredUser);
-        ShoppingCart shoopingCartByNewRegisteredUser = shoppingCartService
+        ShoppingCart shoppingCartByNewRegisteredUser = shoppingCartService
                 .getByUser(newRegisteredUser);
         System.out.println("____There is Sam's shopping cart_____ "
-                + shoopingCartByNewRegisteredUser);
+                + shoppingCartByNewRegisteredUser);
         shoppingCartService.clear(shoppingCartService.getByUser(newRegisteredUser));
         ShoppingCart userWithClearedShoppingCart = shoppingCartService.getByUser(newRegisteredUser);
         System.out.println("____There is Sam's shopping cart after clear_____ "

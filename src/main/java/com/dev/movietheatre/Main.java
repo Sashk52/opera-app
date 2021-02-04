@@ -57,8 +57,8 @@ public class Main {
                 .getInstance(ShoppingCartService.class);
         User registeredUser1 = authenticationService.register("Sam@ukr.net", "000");
         shoppingCartService.addSession(movieSession,registeredUser1);
-        ShoppingCart shoopingCardbyUser1 = shoppingCartService.getByUser(registeredUser1);
-        System.out.println("____There is Sam's shopping card_____ " + shoopingCardbyUser1);
+        ShoppingCart shoopingCartbyUser1 = shoppingCartService.getByUser(registeredUser1);
+        System.out.println("____There is Sam's shopping card_____ " + shoopingCartbyUser1);
         shoppingCartService.clear(shoppingCartService.getByUser(registeredUser1));
         ShoppingCart userWithClearedShoppingCard = shoppingCartService.getByUser(registeredUser1);
         System.out.println("____There is Sam's shopping card after clear_____ "

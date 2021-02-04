@@ -8,7 +8,6 @@ import com.dev.movietheatre.model.User;
 import com.dev.movietheatre.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 @Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
@@ -37,12 +36,12 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     @Override
     public ShoppingCart getByUser(User user) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<ShoppingCart> getByUserQuery = session.createQuery(
+            return session.createQuery(
                     "from ShoppingCart sc "
                             + "left join fetch sc.tickets "
-                            + "where sc.user = :user", ShoppingCart.class);
-            getByUserQuery.setParameter("user", user);
-            return getByUserQuery.getSingleResult();
+                            + "where sc.user = :user", ShoppingCart.class)
+            .setParameter("user", user)
+            .getSingleResult();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get Shopping card by user " + user, e);
         }

@@ -11,6 +11,7 @@ import com.dev.movietheatre.security.AuthenticationService;
 import com.dev.movietheatre.service.CinemaHallService;
 import com.dev.movietheatre.service.MovieService;
 import com.dev.movietheatre.service.MovieSessionService;
+import com.dev.movietheatre.service.OrderService;
 import com.dev.movietheatre.service.ShoppingCartService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -43,12 +44,12 @@ public class Main {
         LocalDate movieDate = LocalDate.of(2021, 02, 01);
         List<MovieSession> availableSessions = movieSessionService
                 .findAvailableSessions(movie.getId(),
-                movieDate);
+                        movieDate);
         System.out.println(availableSessions.toString());
         AuthenticationService authenticationService = (AuthenticationService) injector
                 .getInstance(AuthenticationService.class);
         User registeredUser = authenticationService.register("Billy@ukr.net",
-                 "111");
+                "111");
         User loginedUser = authenticationService.login("Billy@ukr.net", "111");
         System.out.println("Registered user " + registeredUser.toString());
         System.out.println("Logined user " + loginedUser.toString());
@@ -56,14 +57,17 @@ public class Main {
         ShoppingCartService shoppingCartService = (ShoppingCartService) injector
                 .getInstance(ShoppingCartService.class);
         User newRegisteredUser = authenticationService.register("Sam@ukr.net", "000");
-        shoppingCartService.addSession(movieSession,newRegisteredUser);
+        shoppingCartService.addSession(movieSession, newRegisteredUser);
         ShoppingCart shoppingCartByNewRegisteredUser = shoppingCartService
                 .getByUser(newRegisteredUser);
         System.out.println("____There is Sam's shopping cart_____ "
                 + shoppingCartByNewRegisteredUser);
-        shoppingCartService.clear(shoppingCartService.getByUser(newRegisteredUser));
-        ShoppingCart userWithClearedShoppingCart = shoppingCartService.getByUser(newRegisteredUser);
-        System.out.println("____There is Sam's shopping cart after clear_____ "
-                + userWithClearedShoppingCart);
+
+        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
+        ShoppingCart shoppingCartUserWithOrder = shoppingCartService.getByUser(newRegisteredUser);
+        System.out.println("__Shopping card defore created order___" + shoppingCartUserWithOrder);
+        orderService.completeOrder(shoppingCartUserWithOrder);
+        System.out.println("__Order info__" + orderService.getOrdersHistory(newRegisteredUser));
+        System.out.println("__Shopping cart after created order___" + shoppingCartUserWithOrder);
     }
 }

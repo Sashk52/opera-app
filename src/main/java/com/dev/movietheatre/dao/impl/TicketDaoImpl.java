@@ -2,26 +2,20 @@ package com.dev.movietheatre.dao.impl;
 
 import com.dev.movietheatre.dao.TicketDao;
 import com.dev.movietheatre.exception.DataProcessingException;
+import com.dev.movietheatre.lib.Dao;
 import com.dev.movietheatre.model.Ticket;
+import com.dev.movietheatre.util.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.stereotype.Repository;
 
-@Repository
+@Dao
 public class TicketDaoImpl implements TicketDao {
-    private final SessionFactory sessionFactory;
-
-    public TicketDaoImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
     @Override
     public Ticket add(Ticket ticket) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = sessionFactory.openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             session.save(ticket);
             transaction.commit();

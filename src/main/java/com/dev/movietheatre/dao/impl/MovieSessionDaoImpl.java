@@ -2,27 +2,21 @@ package com.dev.movietheatre.dao.impl;
 
 import com.dev.movietheatre.dao.MovieSessionDao;
 import com.dev.movietheatre.exception.DataProcessingException;
+import com.dev.movietheatre.lib.Dao;
 import com.dev.movietheatre.model.MovieSession;
+import com.dev.movietheatre.util.HibernateUtil;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.springframework.stereotype.Repository;
 
-@Repository
+@Dao
 public class MovieSessionDaoImpl implements MovieSessionDao {
-    private final SessionFactory sessionFactory;
-
-    public MovieSessionDaoImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<MovieSession> getMoviesSessionQuery = session.createQuery(
                     "select ms from MovieSession ms "
                            + " left join fetch ms.cinemaHall "
@@ -43,7 +37,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = sessionFactory.openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             session.save(movieSession);
             transaction.commit();

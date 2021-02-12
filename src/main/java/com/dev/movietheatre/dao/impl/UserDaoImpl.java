@@ -2,22 +2,28 @@ package com.dev.movietheatre.dao.impl;
 
 import com.dev.movietheatre.dao.UserDao;
 import com.dev.movietheatre.exception.DataProcessingException;
-import com.dev.movietheatre.lib.Dao;
 import com.dev.movietheatre.model.User;
-import com.dev.movietheatre.util.HibernateUtil;
 import java.util.Optional;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class UserDaoImpl implements UserDao {
+    private final SessionFactory sessionFactory;
+
+    public UserDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public User add(User user) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
@@ -36,7 +42,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<User> findByEmailQuery = session.createQuery("from User u "
                     + " where email = :user_email", User.class);
             findByEmailQuery.setParameter("user_email", email);

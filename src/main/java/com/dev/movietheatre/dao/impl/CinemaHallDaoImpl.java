@@ -4,6 +4,7 @@ import com.dev.movietheatre.dao.CinemaHallDao;
 import com.dev.movietheatre.exception.DataProcessingException;
 import com.dev.movietheatre.model.CinemaHall;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -52,9 +53,9 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
     }
 
     @Override
-    public CinemaHall getById(Long id) {
+    public Optional<CinemaHall> getById(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(CinemaHall.class, id);
+            return Optional.ofNullable(session.get(CinemaHall.class, id));
         } catch (Exception e) {
             throw new DataProcessingException("Can't get cinemaHall by id " + id, e);
         }

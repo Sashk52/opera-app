@@ -2,6 +2,7 @@ package com.dev.movietheatre.dao;
 
 import com.dev.movietheatre.model.Movie;
 import java.util.List;
+import java.util.Optional;
 
 public interface MovieDao {
 
@@ -9,5 +10,5 @@ public interface MovieDao {
 
     List<Movie> getAll();
 
-    Movie getById(Long id);
+    Optional<Movie> getById(Long id);
 }

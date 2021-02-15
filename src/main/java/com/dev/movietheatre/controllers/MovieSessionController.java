@@ -38,7 +38,7 @@ public class MovieSessionController {
         movieSessionService.add(movieSession);
     }
 
-    @GetMapping("/accessible")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> findAvailableSessions(
             @RequestParam(value = "movieId") Long movieId,
             @RequestParam (value = "date")

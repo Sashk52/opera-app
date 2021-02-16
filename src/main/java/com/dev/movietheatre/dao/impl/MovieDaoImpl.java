@@ -4,6 +4,7 @@ import com.dev.movietheatre.dao.MovieDao;
 import com.dev.movietheatre.exception.DataProcessingException;
 import com.dev.movietheatre.model.Movie;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -47,6 +48,15 @@ public class MovieDaoImpl implements MovieDao {
             return getAllMoviesQuery.getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get list of all movies ", e);
+        }
+    }
+
+    @Override
+    public Optional<Movie> getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return Optional.ofNullable(session.get(Movie.class, id));
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't get movie by id " + id, e);
         }
     }
 }

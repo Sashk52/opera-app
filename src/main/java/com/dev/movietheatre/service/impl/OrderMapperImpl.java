@@ -15,7 +15,7 @@ public class OrderMapperImpl implements OrderMapper {
         orderResponseDto.setId(order.getId());
         orderResponseDto.setEmail(order.getUser().getEmail());
         orderResponseDto.setDate(order.getOrderDate().toString());
-        orderResponseDto.setTicketsId(order.getTickets()
+        orderResponseDto.setTicketsIds(order.getTickets()
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));

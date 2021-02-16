@@ -6,7 +6,7 @@ public class OrderResponseDto {
     private Long id;
     private String date;
     private String email;
-    private List<Long> ticketsId;
+    private List<Long> ticketsIds;
 
     public Long getId() {
         return id;
@@ -32,11 +32,11 @@ public class OrderResponseDto {
         this.email = email;
     }
 
-    public List<Long> getTicketsId() {
-        return ticketsId;
+    public List<Long> getTicketsIds() {
+        return ticketsIds;
     }
 
-    public void setTicketsId(List<Long> ticketsId) {
-        this.ticketsId = ticketsId;
+    public void setTicketsIds(List<Long> ticketsIds) {
+        this.ticketsIds = ticketsIds;
     }
 }

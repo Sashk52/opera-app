@@ -13,7 +13,7 @@ public class ShoppingCartMapperImpl implements ShoppingCartMapper {
     public ShoppingCartResponseDto mapShoppingCartToDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto shoppingCartResponseDto = new ShoppingCartResponseDto();
         shoppingCartResponseDto.setUserId(shoppingCart.getId());
-        shoppingCartResponseDto.setTicketId(shoppingCart.getTickets()
+        shoppingCartResponseDto.setTicketIds(shoppingCart.getTickets()
                 .stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList()));

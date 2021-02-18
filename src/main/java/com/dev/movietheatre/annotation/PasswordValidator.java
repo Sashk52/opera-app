@@ -4,7 +4,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.BeanWrapperImpl;
 
-public class PasswordValidator implements ConstraintValidator<PasswordConstraint, String> {
+public class PasswordValidator implements ConstraintValidator<PasswordConstraint, Object> {
     private String password;
     private String repeatPassword;
 
@@ -13,9 +13,9 @@ public class PasswordValidator implements ConstraintValidator<PasswordConstraint
         this.repeatPassword = constraint.repeatPassword();
     }
 
-    public boolean isValid(String obj, ConstraintValidatorContext context) {
-        Object passwordField = new BeanWrapperImpl(obj).getPropertyValue(password);
-        Object passwordRepeatField = new BeanWrapperImpl(obj).getPropertyValue(repeatPassword);
+    public boolean isValid(Object user, ConstraintValidatorContext context) {
+        Object passwordField = new BeanWrapperImpl(user).getPropertyValue(password);
+        Object passwordRepeatField = new BeanWrapperImpl(user).getPropertyValue(repeatPassword);
         return passwordField != null & passwordField.equals(passwordRepeatField);
     }
 }

@@ -11,7 +11,7 @@ import javax.validation.Payload;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PasswordConstraint {
-    String message() default "Incorrect passrod";
+    String message() default "Incorrect password";
 
     Class<?>[] groups() default {};
 

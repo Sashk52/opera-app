@@ -9,12 +9,12 @@ import javax.validation.constraints.Size;
         repeatPassword = "repeatPassword",
         message = "Passwords do not match!"
 )
-
 public class UserRegistrationDto {
     @EmailConstraint
     private String email;
     @Size(min = 3)
     private String password;
+    @Size(min = 3)
     private String repeatPassword;
 
     public String getEmail() {

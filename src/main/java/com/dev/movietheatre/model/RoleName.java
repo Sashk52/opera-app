@@ -1,6 +1,6 @@
 package com.dev.movietheatre.model;
 
-public enum Roles {
+public enum RoleName {
     USER,
     ADMIN
 }

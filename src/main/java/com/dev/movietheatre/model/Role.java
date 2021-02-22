@@ -16,13 +16,13 @@ public class Role {
     private Long id;
     @Enumerated
     @Column(name = "role_name", nullable = false, unique = true)
-    private Roles roleName;
+    private RoleName roleName;
 
-    public Roles getRoleName() {
+    public RoleName getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(Roles roleName) {
+    public void setRoleName(RoleName roleName) {
         this.roleName = roleName;
     }
 

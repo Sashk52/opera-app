@@ -3,7 +3,7 @@ package com.dev.movietheatre.dao.impl;
 import com.dev.movietheatre.dao.RoleDao;
 import com.dev.movietheatre.exception.DataProcessingException;
 import com.dev.movietheatre.model.Role;
-import com.dev.movietheatre.model.Roles;
+import com.dev.movietheatre.model.RoleName;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -43,7 +43,7 @@ public class RoleDaoImpl implements RoleDao {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery(
                     "from Role where roleName = :roleName", Role.class)
-                    .setParameter("roleName", Roles.valueOf(role))
+                    .setParameter("roleName", RoleName.valueOf(role))
                     .getSingleResult();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get role " + role, e);

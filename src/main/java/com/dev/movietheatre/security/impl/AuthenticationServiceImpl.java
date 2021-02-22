@@ -5,7 +5,7 @@ import com.dev.movietheatre.security.AuthenticationService;
 import com.dev.movietheatre.service.RoleService;
 import com.dev.movietheatre.service.ShoppingCartService;
 import com.dev.movietheatre.service.UserService;
-import java.util.List;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,7 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        user.setRoles(List.of(roleService.getRoleByName("USER")));
+        user.setRoles(Set.of(roleService.getRoleByName("USER")));
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;

@@ -2,19 +2,24 @@ package com.dev.movietheatre.security.impl;
 
 import com.dev.movietheatre.model.User;
 import com.dev.movietheatre.security.AuthenticationService;
+import com.dev.movietheatre.service.RoleService;
 import com.dev.movietheatre.service.ShoppingCartService;
 import com.dev.movietheatre.service.UserService;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
+    private final RoleService roleService;
 
     public AuthenticationServiceImpl(UserService userService,
-                                     ShoppingCartService shoppingCartService) {
+                                     ShoppingCartService shoppingCartService,
+                                     RoleService roleService) {
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
+        this.roleService = roleService;
     }
 
     @Override
@@ -22,8 +27,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        User newUser = userService.add(user);
-        shoppingCartService.registerNewShoppingCart(newUser);
-        return newUser;
+        user.setRoles(List.of(roleService.getRoleByName("USER")));
+        userService.add(user);
+        shoppingCartService.registerNewShoppingCart(user);
+        return user;
     }
 }

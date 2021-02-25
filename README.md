@@ -2,14 +2,31 @@ Opera
 Project emulates work of opera.
 User can choose and book performances according available in particular time-slot.
 Shopping-cart, orders and ticket entities match real-time booking.
-Authentication
 
 In this project used N-tier architecture with DB layer, DAO layer, Service layer, Controllers layer and View layer.
 Project was developed according to SOLID principles with authorization and authentication.
 
+Store clients can perform the following actions:
+
+    register on the opera's website;
+    log in and out;
+    look through the available performence;
+    book performance to own cart;
+    place orders.
+
+Admins in their turn can:
+
+    view all registered users;
+    view all registered performances;
+    view all registered stages;
+    giview all registered performances sessions;
+    delete users from the database;
+    view all orders placed at the opera;
+
+
 Technologies used
 
-backend: Java, Spring Core/MVC/Security, Hibernate, Jackson, Tomcat
+backend: JDK 14, Spring Core/MVC/Security, Hibernate, Jackson, Tomcat, Maven
 database: MySQL
 To start the project you need:
 
@@ -21,5 +38,4 @@ To start the project you need:
         user: "your username"
         password: "your password"
         url: jdbc:mysql://"your host name":"your port"/"your name db"?useUnicode=true&serverTimezone=UTC
-    5. Setup initial roles in InjectData (controllers package)
-    6. Run a project
+    5. Run a project

@@ -1,4 +1,4 @@
-Opera
+#Opera<h3>
 Project emulates work of opera.
 User can choose and book performances according available in particular time-slot.
 Shopping-cart, orders and ticket entities match real-time booking.
@@ -6,28 +6,31 @@ Shopping-cart, orders and ticket entities match real-time booking.
 In this project used N-tier architecture with DB layer, DAO layer, Service layer, Controllers layer and View layer.
 Project was developed according to SOLID principles with authorization and authentication.
 
-Store clients can perform the following actions:
+Opera clients can perform the following actions:
 
-    register on the opera's website;
-    log in and out;
-    look through the available performence;
-    book performance to own cart;
-    place orders.
+    * register on the opera's website; 
+    * log in and out;
+    * look through the available performence;
+    * book performance to own cart;
+    * place orders.
 
 Admins in their turn can:
 
-    view all registered users;
-    view all registered performances;
-    view all registered stages;
-    giview all registered performances sessions;
-    delete users from the database;
-    view all orders placed at the opera;
+    * view all registered users;
+    * view all registered performances;
+    * view all registered stages;
+    * view all registered performances sessions;
+    * delete users from the database;
+    * view all orders placed at the opera;
 
 
-Technologies used
+## Technologies used<h2>
 
-backend: JDK 14, Spring Core/MVC/Security, Hibernate, Jackson, Tomcat, Maven
-database: MySQL
+###Backend
+JDK 14, Spring Core/MVC/Security, Hibernate, Jackson, Tomcat, Maven
+###Database 
+MySQL
+
 To start the project you need:
 
     1.Download and install the JDK

@@ -37,8 +37,8 @@ __To start the project you need:__
 2. Download and install servlet container (for example Apache Tomcat)
 3. Download and install MySQL Server
 4. Create new db according dp.prorepties file. 
-5. Setup new connection with
-        user: "your username"
-        password: "your password"
-        url: jdbc:mysql://"your host name":"your port"/"your name db"?useUnicode=true&serverTimezone=UTC
+5. Setup new connection with<br>
+        - user: "your username"<br>
+        - password: "your password"<br>
+        - url: jdbc:mysql://"your host name":"your port"/"your name db"?useUnicode=true&serverTimezone=UTC
 6.  Run a project

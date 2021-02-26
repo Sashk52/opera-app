@@ -86,7 +86,8 @@ public class PerformanceSessionDaoImpl implements PerformanceSessionDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't update performanceSession " + performanceSession, e);
+            throw new DataProcessingException("Can't update performanceSession "
+                    + performanceSession, e);
         } finally {
             if (session != null) {
                 session.close();

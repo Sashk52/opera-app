@@ -68,7 +68,7 @@ public class PerformanceSessionDaoImpl implements PerformanceSessionDao {
         try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(session.get(PerformanceSession.class, id));
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get movieSession by id " + id, e);
+            throw new DataProcessingException("Can't get performanceSession by id " + id, e);
         }
     }
 
@@ -86,7 +86,7 @@ public class PerformanceSessionDaoImpl implements PerformanceSessionDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't update MovieSession " + performanceSession, e);
+            throw new DataProcessingException("Can't update performanceSession " + performanceSession, e);
         } finally {
             if (session != null) {
                 session.close();
